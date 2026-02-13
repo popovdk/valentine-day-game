@@ -204,14 +204,19 @@ export function animateFinalScreen(selector) {
       '-=0.2',
     );
 
-  gsap.to(`${selector} .floating-heart`, {
-    y: '-=15',
-    duration: 1.5,
-    repeat: -1,
-    yoyo: true,
-    stagger: { each: 0.2, from: 'random' },
-    ease: 'sine.inOut',
-  });
+  gsap.killTweensOf(`${selector} .floating-heart`);
+  gsap.fromTo(
+    `${selector} .floating-heart`,
+    { y: 0 },
+    {
+      y: -15,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      stagger: { each: 0.2, from: 'random' },
+      ease: 'sine.inOut',
+    },
+  );
 
   return tl;
 }

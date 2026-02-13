@@ -126,6 +126,7 @@ export function gameComponent() {
           heartCenterX <= basketRight + 10
         ) {
           this.catchHeart(heart, el, gameArea);
+          if (this.score >= this.totalHearts) break;
         }
       }
     },
@@ -169,6 +170,7 @@ export function gameComponent() {
     },
 
     showFinalScreen() {
+      if (this.phase === 'final') return;
       this.phase = 'final';
       this.toastVisible = false;
       this.$nextTick(() => {
