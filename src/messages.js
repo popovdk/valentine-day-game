@@ -18,5 +18,5 @@ export const loveMessages = [
 export const finalMessage = {
   title: 'Настя!!!',
   text: 'Спасибо, что ты есть в моей жизни. Каждый день с тобой — это подарок. Я очень люблю тебя! С Днём Святого Валентина, моя любимая Зая!',
-  photoSrc: '/photo.jpg',
+  photoSrc: 'photo.jpg',
 };
