@@ -1,0 +1,19 @@
+{
+  "name": "valentinka",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host --port=5155",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "alpinejs": "^3.15.8",
+    "gsap": "^3.14.2",
+    "vite": "^7.3.1"
+  }
+}

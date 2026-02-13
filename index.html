@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Поймай сердечки</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <div
+      x-data="game"
+      id="game-area"
+      x-ref="gameArea"
+      class="game-area"
+      @touchmove="handlePointerMove($event)"
+      @touchstart="handlePointerMove($event)"
+      @mousemove="handlePointerMove($event)"
+    >
+      <!-- START SCREEN -->
+      <div x-show="phase === 'start'" x-transition class="start-screen">
+        <div class="bg-heart" style="top: 10%; left: 15%">💖</div>
+        <div class="bg-heart" style="top: 25%; right: 10%">💗</div>
+        <div class="bg-heart" style="bottom: 30%; left: 8%">💝</div>
+        <div class="bg-heart" style="bottom: 15%; right: 20%">💕</div>
+        <div class="bg-heart" style="top: 50%; left: 50%">💘</div>
+
+        <div class="start-content">
+          <h1>Настя, лови сердечки</h1>
+          <p>
+            Поймай их все и узнай,<br />
+            за что я тебя так люблю
+          </p>
+          <button class="start-btn" @click="startGame()">Начать</button>
+        </div>
+      </div>
+
+      <!-- PLAYING PHASE -->
+      <div x-show="phase === 'playing'" class="game-playing">
+        <!-- Score -->
+        <div class="score-display">
+          <span x-text="score"></span> / <span x-text="totalHearts"></span>
+          <span class="score-heart">💖</span>
+        </div>
+
+        <!-- Toast message -->
+        <div x-show="toastVisible" class="toast-message" x-text="toastMessage"></div>
+
+        <!-- Falling Hearts -->
+        <template x-for="heart in hearts" :key="heart.id">
+          <div
+            class="falling-heart"
+            :id="'heart-' + heart.id"
+            :style="{ fontSize: heart.size + 'px' }"
+            x-text="heart.emoji"
+          ></div>
+        </template>
+
+        <!-- Basket -->
+        <div class="basket" :style="{ left: basketX + '%' }">
+          <div class="basket-emoji">🧺</div>
+        </div>
+      </div>
+
+      <!-- FINAL SCREEN -->
+      <div x-show="phase === 'final'" class="final-screen">
+        <div class="floating-heart" style="top: 5%; left: 10%">💖</div>
+        <div class="floating-heart" style="top: 15%; right: 8%">💕</div>
+        <div class="floating-heart" style="bottom: 20%; left: 5%">💗</div>
+        <div class="floating-heart" style="bottom: 10%; right: 12%">💝</div>
+        <div class="floating-heart" style="top: 40%; left: 3%">❤️</div>
+        <div class="floating-heart" style="top: 60%; right: 5%">💘</div>
+
+        <div class="final-content">
+          <img
+            class="final-photo"
+            :src="finalData.photoSrc"
+            alt=""
+          />
+          <h2 class="final-title" x-text="finalData.title"></h2>
+          <p class="final-text" x-text="finalData.text"></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
